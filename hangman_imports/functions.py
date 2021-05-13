@@ -31,7 +31,7 @@ def firs_and_last_letters(word):
 
 
 def retrieve_dict_page(letter):
-    file = open("diccionario/palabras_"+letter+".txt", "r", encoding='utf8')
+    file = open(f"diccionario/palabras_{letter}.txt", "r", encoding='utf8')
     page = file.readlines()
     file.close()
     return page
@@ -51,10 +51,12 @@ def get_a_word(possible_letters):
     return word
 
 
-def greet_player():
+def greet_player(word_with_holes):
     print("\nJUEGO: EL AHORACADO")
     print("Adivina la sigueinte palabra, puedes equivocarte 5 veces.")
     print("Presiona Ctrl+C para salir\n")
+    print("La palabra a adivinar es: ")
+    print(word_with_holes)
 
 def yes_check(input, callback):
     if input.lower() == "si" or input.lower() == "sí" or input.lower() == "s" or input.lower() == "yes" or input.lower() == "y":
@@ -64,10 +66,10 @@ def yes_check(input, callback):
     else:
         return callback()
 
-def ver_sign():
+def get_significado():
     r = input("Ver significado? (s/n)")
     r = r.strip()
-    return yes_check(r, ver_sign)
+    return yes_check(r, get_significado)
 
 def play_again():
     replay = input("\nJugar de nuevo? (s/n)")
